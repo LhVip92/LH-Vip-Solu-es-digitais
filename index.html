@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LH.VIP | Relações Digitais - Tecnologia, Estratégia & IA</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========== RESET & VARIÁVEIS ========== */
+        :root {
+            --brand-pink: #ff2d78;
+            --brand-pink-dark: #e01e5a;
+            --brand-yellow: #f5c542;
+            --brand-yellow-dark: #e0b030;
+            --brand-dark: #0a0a0f;
+            --brand-dark-secondary: #1a1a2e;
+            --text-light: #ffffff;
+            --text-gray: #b0b0c0;
+            --bg-white: #ffffff;
+            --bg-light: #f9f9fb;
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--brand-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== TIPOGRAFIA ========== */
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        h1 { font-size: 4.8rem; }
+        h2 { font-size: 3rem; }
+        h3 { font-size: 1.5rem; }
+
+        .highlight-pink {
+            color: var(--brand-pink);
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight-pink::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 45, 120, 0.2);
+            z-index: -1;
+        }
+
+        /* ========== BOTÕES ========== */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-yellow {
+            background: var(--brand-yellow);
+            color: #000;
+        }
+
+        .btn-yellow:hover {
+            background: var(--brand-yellow-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 197, 66, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            background: transparent;
+            padding: 14px 28px;
+        }
+
+        .btn-outline:hover {
+            background: var(--text-light);
+            color: var(--brand-dark);
+        }
+
+        .btn-outline-white {
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: var(--text-light);
+            background: transparent;
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--text-light);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-full {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            display: inline-block;
+            padding: 14px 28px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-whatsapp:hover {
+            background: #1ea952;
+            transform: translateY(-2px);
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 14px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo-dot {
+            color: var(--brand-pink);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .nav-menu a:hover {
+            color: var(--brand-pink);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--text-light);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 180px 0 140px;
+            background: var(--brand-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 45, 120, 0.1), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4.8rem;
+            line-height: 1;
+            font-weight: 800;
+            max-width: 700px;
+        }
+
+        .hero-sub {
+            margin-top: 28px;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            opacity: 0.85;
+            max-width: 620px;
+        }
+
+        .hero-buttons {
+            margin-top: 40px;
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 70px;
+        }
+
+        .hero-mockup {
+            width: 100%;
+            max-width: 520px;
+            display: block;
+            margin: auto;
+            filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.35));
+            transition: var(--transition);
+        }
+
+        .hero-mockup:hover {
+            transform: translateY(-8px);
+        }
+
+        .hero-center-button {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--brand-yellow);
+            color: #000;
+            border: none;
+            border-radius: 999px;
+            padding: 12px 28px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(245, 197, 66, 0.28);
+            transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+            z-index: 2;
+        }
+
+        .hero-center-button:hover {
+            transform: translateX(-50%) scale(1.04);
+            box-shadow: 0 0 0 6px rgba(245, 197, 66, 0.16), 0 12px 35px rgba(245, 197, 66, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .hero-ring {
+            animation: heroRingPulse 2.4s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        .hero-ring-inner {
+            animation: heroRingPulse 2.4s ease-in-out infinite;
+            animation-delay: 0.2s;
+        }
+
+        @keyframes heroRingPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.04);
+                opacity: 0.95;
+            }
+        }
+
+        /* ========== NUMBERS ========== */
+        .numbers {
+            padding: 80px 0;
+            background: var(--brand-dark-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .numbers .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .number h2 {
+            font-size: 4rem;
+            color: var(--brand-pink);
+            transition: var(--transition);
+        }
+
+        .number p {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        /* ========== SERVIÇOS ========== */
+        .services {
+            padding: 120px 0;
+            background: var(--bg-white);
+            color: #1a1a2e;
+            text-align: center;
+        }
+
+        .services h2 {
+            color: #1a1a2e;
+        }
+
+        .section-subtitle {
+            max-width: 600px;
+            margin: 20px auto 50px;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            line-height: 1.8;
+        }
+
+        .service-box {
+            background: var(--brand-dark);
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            border-radius: var(--radius);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            text-align: left;
+            transition: var(--transition);
+        }
+
+        .service-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            text-align: center;
+            color: var(--brand-yellow);
+        }
+
+        .service-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 36px;
+        }
+
+        .service-box ul li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 14px;
+            font-size: 1.05rem;
+        }
+
+        .service-box ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--brand-pink);
+            font-weight: bold;
+        }
+
+        /* ========== CARDS ========== */
+        .cards-section {
+            padding: 120px 0;
+            background: var(--brand-dark);
+        }
+
+        .cards-section h2 {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--brand-dark-secondary);
+            padding: 40px 28px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--brand-pink);
+            box-shadow: 0 20px 40px rgba(255, 45, 120, 0.1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+        }
+
+        .card-services {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .card-services li {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-gray);
+        }
+
+        /* ========== CASES ========== */
+        .cases {
+            padding: 120px 0;
+            background: var(--bg-white);
+            color: #1a1a2e;
+        }
+
+        .cases h2 {
+            text-align: center;
+            margin-bottom: 60px;
+            color: #1a1a2e;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .case-column {
+            padding: 40px;
+            border-radius: var(--radius);
+            background: #fafafa;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .case-column:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+            border-color: var(--brand-pink);
+        }
+
+        .case-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--brand-pink);
+            border: 1px solid var(--brand-pink);
+            padding: 4px 12px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .case-description {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 16px 0 20px;
+        }
+
+        .case-column ul {
+            list-style: disc;
+            padding-left: 20px;
+            opacity: 0.7;
+            line-height: 2;
+        }
+
+        /* ========== DIAGNÓSTICO ========== */
+        .diagnostico {
+            padding: 120px 0;
+            background: var(--brand-dark);
+        }
+
+        .diagnostico-box {
+            max-width: 550px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--brand-dark-secondary);
+            padding: 60px 40px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .diagnostico-box h2 {
+            margin-bottom: 16px;
+        }
+
+        .diagnostico-box p {
+            opacity: 0.8;
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .diagnostico-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .diagnostico-form input {
+            padding: 16px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .diagnostico-form input:focus {
+            border-color: var(--brand-pink);
+            background: rgba(255, 45, 120, 0.05);
+        }
+
+        .diagnostico-form input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-note {
+            margin-top: 16px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            padding: 80px 0 30px;
+            background: #06060a;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand p {
+            opacity: 0.7;
+            margin-top: 16px;
+            line-height: 1.8;
+            max-width: 400px;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .footer-links ul li a:hover {
+            opacity: 1;
+            color: var(--brand-pink);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0.5;
+            font-size: 0.9rem;
+        }
+
+        /* ========== RESPONSIVO ========== */
+        @media (max-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--brand-dark-secondary);
+                flex-direction: column;
+                padding: 100px 40px 40px;
+                gap: 24px;
+                transition: var(--transition);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .hero {
+                padding: 140px 0 80px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                max-width: 100%;
+            }
+
+            .hero-sub {
+                max-width: 100%;
+                font-size: 1.05rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-mockup {
+                max-width: 320px;
+            }
+
+            .numbers .container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .number h2 {
+                font-size: 3rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-box {
+                padding: 30px 24px;
+            }
+
+            .diagnostico-box {
+                padding: 40px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER / NAVEGAÇÃO ========== -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">
+                LH<span class="logo-dot">.</span>VIP
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#cases">Cases</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#diagnostico" class="btn btn-outline">Diagnóstico Grátis</a></li>
+            </ul>
+            
+            <!-- Menu Mobile Toggle -->
+            <button class="menu-toggle" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>
+                        Relações Digitais que
+                        <span class="highlight-pink">aceleram</span>
+                        resultados
+                    </h1>
+                    
+                    <p class="hero-sub">
+                        Unimos tecnologia, estratégia e inteligência artificial para criar ecossistemas digitais que transformam negócios em máquinas de crescimento.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#diagnostico" class="btn btn-yellow">
+                            Solicitar Diagnóstico →
+                        </a>
+                        <a href="#cases" class="btn btn-outline-white">
+                            Ver Cases
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" class="hero-mockup">
+                        <rect width="520" height="400" rx="20" fill="#1a1a2e" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+                        <circle cx="260" cy="160" r="80" class="hero-ring" fill="none" stroke="#ff2d78" stroke-width="3"/>
+                        <circle cx="260" cy="160" r="50" class="hero-ring-inner" fill="#0a0a0f" opacity="0.95"/>
+                        <clipPath id="hero-photo-mask">
+                            <circle cx="260" cy="160" r="50"/>
+                        </clipPath>
+                        <image href="imagem-2.jpeg.jpeg" x="210" y="110" width="100" height="100" preserveAspectRatio="xMidYMid slice" clip-path="url(#hero-photo-mask)"/>
+                        <circle cx="260" cy="160" r="50" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.2"/>
+                        <circle cx="100" cy="100" r="15" fill="#ff2d78" opacity="0.3"/>
+                        <circle cx="420" cy="120" r="10" fill="#00d2ff" opacity="0.3"/>
+                        <circle cx="380" cy="300" r="8" fill="#f5c542" opacity="0.3"/>
+                        <line x1="50" y1="40" x2="160" y2="40" stroke="rgba(255,255,255,0.2)" stroke-width="8" stroke-linecap="round"/>
+                        <line x1="50" y1="60" x2="120" y2="60" stroke="rgba(255,255,255,0.1)" stroke-width="6" stroke-linecap="round"/>
+                    </svg>
+                    <button type="button" class="hero-center-button">DIAGNÓSTICO</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== NUMBERS SECTION ========== -->
+    <section class="numbers">
+        <div class="container">
+            <div class="number" data-animate>
+                <h2>5</h2>
+                <p>Divisões Estratégicas</p>
+            </div>
+            <div class="number" data-animate>
+                <h2>100%</h2>
+                <p>Projetos Personalizados</p>
+            </div>
+            <div class="number" data-animate>
+                <h2>1</h2>
+                <p>Framework Proprietário</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVIÇOS / PROJETOS SOB MEDIDA ========== -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <h2>
+                Projetos
+                <span class="highlight-pink">Sob Medida</span>
+            </h2>
+            
+            <p class="section-subtitle">
+                Cada empresa possui um ecossistema diferente.
+                Por isso todos os projetos começam com um diagnóstico estratégico.
+            </p>
+            
+            <div class="service-box">
+                <h3>Como funciona</h3>
+                <ul>
+                    <li>Diagnóstico gratuito</li>
+                    <li>Arquitetura da solução</li>
+                    <li>Cronograma</li>
+                    <li>Execução</li>
+                    <li>Suporte</li>
+                </ul>
+                <a href="#diagnostico" class="btn btn-yellow btn-full">
+                    Solicitar Diagnóstico
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CARDS DE SERVIÇOS ========== -->
+    <section class="cards-section" id="projetos">
+        <div class="container">
+            <h2>
+                Nossas
+                <span class="highlight-pink">Especialidades</span>
+            </h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">🚀</div>
+                    <h3>Landing Pages</h3>
+                    <ul class="card-services">
+                        <li>Alta Conversão</li>
+                        <li>SEO Otimizado</li>
+                        <li>Mobile First</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">💎</div>
+                    <h3>Sites Premium</h3>
+                    <ul class="card-services">
+                        <li>Design Exclusivo</li>
+                        <li>Performance</li>
+                        <li>Escalabilidade</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Branding</h3>
+                    <ul class="card-services">
+                        <li>Identidade Visual</li>
+                        <li>Posicionamento</li>
+                        <li>Storytelling</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🤖</div>
+                    <h3>UX/UI & IA</h3>
+                    <ul class="card-services">
+                        <li>Experiência</li>
+                        <li>Agentes de IA</li>
+                        <li>Automação</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CASES ========== -->
+    <section class="cases" id="cases">
+        <div class="container">
+            <h2>
+                Cases &
+                <span class="highlight-pink">Frameworks</span>
+            </h2>
+            
+            <div class="cases-grid">
+                <!-- Mente Antifrágil -->
+                <a href="https://mente-antifragil.netlify.app/" class="case-column" target="_blank" rel="noopener noreferrer">
+                    <span class="case-tag">Mente Antifrágil™</span>
+                    <p class="case-description">Framework proprietário</p>
+                    <ul>
+                        <li>Landing Page</li>
+                        <li>Branding</li>
+                        <li>Arquitetura Digital</li>
+                        <li>Produto Educacional</li>
+                    </ul>
+                </a>
+                
+                <!-- LH.VIP -->
+                <div class="case-column">
+                    <span class="case-tag">LH.VIP</span>
+                    <p class="case-description">Relações Digitais</p>
+                    <ul>
+                        <li>Branding</li>
+                        <li>Posicionamento</li>
+                        <li>Site Corporativo</li>
+                        <li>Arquitetura de Marca</li>
+                        <li>Experiência Digital</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DIAGNÓSTICO CTA ========== -->
+    <section class="diagnostico" id="diagnostico">
+        <div class="container">
+            <div class="diagnostico-box">
+                <h2>Comece pelo Diagnóstico</h2>
+                <p>
+                    Em 30 minutos, mapeamos oportunidades digitais para o seu negócio.
+                    Sem compromisso, sem custo.
+                </p>
+                
+                <form class="diagnostico-form" id="form-diagnostico">
+                    <input type="text" placeholder="Seu nome" required>
+                    <input type="tel" placeholder="WhatsApp com DDD" required>
+                    <input type="text" placeholder="Nome da empresa" required>
+                    <button type="submit" class="btn btn-yellow btn-full">
+                        Quero Meu Diagnóstico
+                    </button>
+                </form>
+                
+                <p class="form-note">
+                    ⚡ Retornamos em até 2 horas
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        LH<span class="logo-dot">.</span>VIP
+                    </a>
+                    <p>
+                        Tecnologia. Estratégia. Inteligência Artificial.
+                        Tudo conectado para acelerar empresas que desejam crescer de forma consistente.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#projetos">Projetos</a></li>
+                        <li><a href="#cases">Cases</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#diagnostico">Diagnóstico</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <a href="https://wa.me/5585991298846" class="btn-whatsapp" target="_blank">
+                        💬 WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 LH.VIP Relações Digitais. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // ========== LH.VIP - SCRIPTS ==========
+
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // ===== HEADER SCROLL EFFECT =====
+            const header = document.querySelector('.header');
+            
+            function handleScroll() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Verifica estado inicial
+            
+            
+            // ===== MENU MOBILE TOGGLE =====
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                
+                // Animação do hambúrguer
+                const spans = menuToggle.querySelectorAll('span');
+                if (navMenu.classList.contains('active')) {
+                    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    spans[1].style.opacity = '0';
+                    spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+                } else {
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                }
+            });
+            
+            // Fecha menu ao clicar em um link
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    const spans = menuToggle.querySelectorAll('span');
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                });
+            });
+            
+            
+            // ===== ANIMAÇÃO DOS NÚMEROS (CONTADOR) =====
+            const numbers = document.querySelectorAll('.number h2');
+            let animated = false;
+            
+            function animateNumbers() {
+                if (animated) return;
+                
+                const numbersSection = document.querySelector('.numbers');
+                const sectionTop = numbersSection.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.8) {
+                    animated = true;
+                    
+                    numbers.forEach(number => {
+                        const target = number.textContent;
+                        const isPercentage = target.includes('%');
+                        const finalValue = parseInt(target);
+                        
+                        let startValue = 0;
+                        const duration = 1500;
+                        const startTime = performance.now();
+                        
+                        function update(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            
+                            // Easing suave
+                            const easeOut = 1 - Math.pow(1 - progress, 3);
+                            const currentValue = Math.floor(easeOut * finalValue);
+                            
+                            number.textContent = isPercentage ? currentValue + '%' : currentValue;
+                            
+                            if (progress < 1) {
+                                requestAnimationFrame(update);
+                            } else {
+                                number.textContent = target;
+                            }
+                        }
+                        
+                        requestAnimationFrame(update);
+                    });
+                }
+            }
+            
+            window.addEventListener('scroll', animateNumbers);
+            animateNumbers(); // Verifica se já está visível ao carregar
+            
+            
+            // ===== SCROLL SUAVE PARA LINKS INTERNOS =====
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        e.preventDefault();
+                        
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            
+            // ===== FORMULÁRIO DE DIAGNÓSTICO =====
+            const formDiagnostico = document.getElementById('form-diagnostico');
+            
+            if (formDiagnostico) {
+                formDiagnostico.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const nome = this.querySelector('input[placeholder="Seu nome"]').value;
+                    const whatsapp = this.querySelector('input[placeholder="WhatsApp com DDD"]').value;
+                    const empresa = this.querySelector('input[placeholder="Nome da empresa"]').value;
+                    
+                    // Validação básica
+                    if (!nome || !whatsapp || !empresa) {
+                        alert('Por favor, preencha todos os campos.');
+                        return;
+                    }
+                    
+                    // Monta mensagem para WhatsApp
+                    const mensagem = encodeURIComponent(
+                        `👋 Olá! Vim pelo site LH.VIP\n\n` +
+                        `📋 *Solicitação de Diagnóstico*\n\n` +
+                        `👤 Nome: ${nome}\n` +
+                        `🏢 Empresa: ${empresa}\n` +
+                        `📱 WhatsApp: ${whatsapp}\n\n` +
+                        `Gostaria de agendar meu diagnóstico gratuito.`
+                    );
+                    
+                    // Número do WhatsApp
+                    const numeroWhatsApp = '5585991298846';
+                    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+                    
+                    // Redireciona para o WhatsApp
+                    window.open(urlWhatsApp, '_blank');
+                    
+                    // Limpa o formulário
+                    this.reset();
+                    
+                    // Feedback visual
+                    const btn = this.querySelector('button');
+                    const textoOriginal = btn.textContent;
+                    btn.textContent = '✅ Redirecionando...';
+                    btn.style.background = '#25D366';
+                    
+                    setTimeout(() => {
+                        btn.textContent = textoOriginal;
+                        btn.style.background = '';
+                    }, 2000);
+                });
+            }
+            
+            
+            // ===== REVELAR ELEMENTOS AO SCROLL (ANIMAÇÃO SUAVE) =====
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Elementos para animar
+            const elementosAnimaveis = document.querySelectorAll(
+                '.card, .case-column, .service-box, .diagnostico-box'
+            );
+            
+            elementosAnimaveis.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+            
+            
+            // ===== ANO ATUAL NO FOOTER (DINÂMICO) =====
+            const footerYear = document.querySelector('.footer-bottom p');
+            if (footerYear && footerYear.textContent.includes('2025')) {
+                const currentYear = new Date().getFullYear();
+                footerYear.innerHTML = footerYear.innerHTML.replace('2025', currentYear);
+            }
+            
+        });
+
+        // ===== CONSOLE MENSAGEM =====
+        console.log('%c🚀 LH.VIP %c| Relações Digitais', 
+            'color: #ff2d78; font-size: 20px; font-weight: bold;',
+            'color: #fff; font-size: 14px;'
+        );
+        console.log('%c💡 Interessado em um diagnóstico? Fale conosco!', 'color: #f5c542;');
+    </script>
+
+</body>
+</html>
